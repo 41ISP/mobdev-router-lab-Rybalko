@@ -1,4 +1,5 @@
 export default function ContactsPage() {
+  
   return (
     <section className="page-shell narrow">
       <span className="eyebrow">CONTACTS</span>
