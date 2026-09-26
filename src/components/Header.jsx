@@ -27,6 +27,7 @@ export default function Header() {
           <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/" label="Главная">Главная</NavLink>
           <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/movies" label="Фильмы">Фильмы</NavLink>
           <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/about" label="О проекте">О проекте</NavLink>
+           <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/contacts" label="Контакты">Контакты</NavLink>
         </nav>
 
         <form className="search" onSubmit={handleSubmit}>
