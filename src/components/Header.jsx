@@ -1,24 +1,33 @@
 import { useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 export default function Header() {
+  const navigate = useNavigate()
   const [query, setQuery] = useState('');
 
   function handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); }
+    function handleSearchKeyDown(e) {
+    if (e.key === 'Enter' && e.target.value.trim()) {
+    navigate ('/search?q=' + encodeURIComponent(e.target.value.trim()))
+      e.target.value = '';
+    }
   }
+  
 
   return (
     <header className="header">
       <div className="header-inner">
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <span className="logo-icon">▶</span>
           <span>MovieBox</span>
-        </a>
+        </Link>
 
         <nav className="nav">
-          <a href="/" className="nav-item">Главная</a>
-          <a href="/movies" className="nav-item">Фильмы</a>
-          <a href="/about" className="nav-item">О проекте</a>
+          <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/" label="Главная">Главная</NavLink>
+          <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/movies" label="Фильмы">Фильмы</NavLink>
+          <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/about" label="О проекте">О проекте</NavLink>
+           <NavLink className={({isActive}) => `nav-link${ isActive ? ' active' : ''}`} to="/contacts" label="Контакты">Контакты</NavLink>
         </nav>
 
         <form className="search" onSubmit={handleSubmit}>
@@ -26,7 +35,7 @@ export default function Header() {
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Поиск фильмов"
+            placeholder="Поиск фильмов" onKeyDown={handleSearchKeyDown}
           />
         </form>
       </div>
